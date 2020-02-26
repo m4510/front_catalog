@@ -12,7 +12,6 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <Head>
-            <title>Catalogo</title>
             <meta charSet="UTF-8" />
             <meta name="description" content="Este es el catalogo de agilgob" />
             <meta name="keywords" content="Catalogo,catalogos,Gobierno,Estado de jalisco" />

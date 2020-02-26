@@ -8,7 +8,7 @@ import { signOut } from '../../actions/index';
 const Header = () => {
   const onCloseSesionHandler = async () => {
     const request = await signOut();
-    if (request.code === 200) Router.push('/login');
+    if (request) Router.push('/login');
   };
 
   return (
@@ -19,16 +19,16 @@ const Header = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          {/* <Link href="/about" passHref>
+          <Link href="/about" passHref>
             <Nav.Link>About</Nav.Link>
           </Link>
-          <Link href="/hola" passHref>
+          {/* <Link href="/hola" passHref>
             <Nav.Link>Hola</Nav.Link>
           </Link> */}
         </Nav>
         <Nav>
-          {!Cookies.get('auth') ? <Nav.Link>Iniciar Sesion</Nav.Link> : ' '}
-          {Cookies.get('auth') ? (
+          {!Cookies.get('token') ? <Nav.Link>Iniciar Sesion</Nav.Link> : ' '}
+          {Cookies.get('token') ? (
             <Nav.Link onClick={onCloseSesionHandler}>Cerrar Sesion</Nav.Link>
           ) : (
             ' '

@@ -11,9 +11,9 @@ const axiosInstance = axios.create({
 export const sendAuthentication = async credentials => {
   return axiosInstance
     .post('/auth', credentials)
-    .then(response => response.data)
+    .then(response => response)
     .catch(error => {
-      notification.setNotificationData('error', error);
+      notification.setNotificationData('error', error.response.data);
       notification.showNotification();
     });
 };
@@ -23,7 +23,7 @@ export const signOut = async () => {
     .post('/signOut')
     .then(response => response.data)
     .catch(error => {
-      notification.setNotificationData('error', error);
+      notification.setNotificationData('error', error.response.data);
       notification.showNotification();
     });
 };
