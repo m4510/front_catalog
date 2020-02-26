@@ -1,22 +1,21 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import BaseLayout from '../components/layouts/BaseLayout';
 
-export default () => (
-  <ul>
-    <li>
-      <Link href="/b" as="/a">
-        <a>a</a>
-      </Link>
-    </li>
-    <li>
-      <Link href="/a" as="/b">
-        <a>b</a>
-      </Link>
-    </li>
-    <li>
-      <Link href={{ pathname: '/posts', query: { id: '2' } }} as="/posts/2">
-        <a>post #2</a>
-      </Link>
-    </li>
-  </ul>
-)
+export const HomePage = () => {
+  return (
+    <BaseLayout>
+      <Row>
+        <Col xs={12}>Estas en el home</Col>
+      </Row>
+    </BaseLayout>
+  );
+};
+
+// HomePage.getInitialProps = async () => {
+//   // if (typeof window === "undefined") {
+//   //   console.log("estas en el server");
+//   // }
+// };
+
+export default HomePage;
