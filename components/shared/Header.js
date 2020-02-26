@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
-import Cookies from 'js-cookie';
 import { signOut } from '../../actions/index';
 
 const Header = () => {
@@ -27,12 +26,8 @@ const Header = () => {
           </Link> */}
         </Nav>
         <Nav>
-          {!Cookies.get('token') ? <Nav.Link>Iniciar Sesion</Nav.Link> : ' '}
-          {Cookies.get('token') ? (
-            <Nav.Link onClick={onCloseSesionHandler}>Cerrar Sesion</Nav.Link>
-          ) : (
-            ' '
-          )}
+          <Nav.Link>Iniciar Sesion</Nav.Link>
+          <Nav.Link onClick={onCloseSesionHandler}>Cerrar Sesion</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

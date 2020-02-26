@@ -2,13 +2,15 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+
 exports.signIn = (req, res) => {
   const { username, password } = req.body;
   if (username === 'adrian' && password === '1234567890') {
-    const accessToken = jwt.sign({ username, password }, process.env.token, { expiresIn: '1m' });
+    const accessToken = jwt.sign({ username, password }, process.env.token, { expiresIn: '1h' });
     res.cookie('token', accessToken, {
-      maxAge: 1000 * 60 * 60 * 24 * 1 /* expire a week from today */,
-      httpOnly: false /* document.cookie doesn't return this cookie */
+      httpOnly: true,
+      expires: expiryDate
     });
     res.sendStatus(200);
   } else {
@@ -20,7 +22,6 @@ exports.validateTokenJWT = (req, res, next) => {
   if (req.cookies.token) {
     jwt.verify(req.cookies.token, process.env.token, err => {
       if (err) {
-        console.log(err);
         res.clearCookie('token');
         res.redirect('/login');
       }
